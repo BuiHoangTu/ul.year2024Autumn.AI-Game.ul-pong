@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
         player1ScoreText.text = _player1Score.ToString();
         Debug.Log("Player 1 Scored! Score: " + _player1Score);
         ball.ResetPosition();
-        ball.InitForce();
     }
 
     public void Player2Scored()
@@ -25,13 +24,14 @@ public class GameManager : MonoBehaviour
         player2ScoreText.text = _player2Score.ToString();
         Debug.Log("Player 2 Scored! Score: " + _player2Score);
         ball.ResetPosition();
-        ball.InitForce();
     }
 
-    public void NewMatch()
+    public void NewGame()
     {
         _player1Score = 0;
+        player1ScoreText.text = _player1Score.ToString();
         _player2Score = 0;
+        player2ScoreText.text = _player2Score.ToString();
     }
 
 }

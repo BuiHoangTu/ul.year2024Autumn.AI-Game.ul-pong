@@ -1,16 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
     public float speed = 150f;
     private Rigidbody2D rigidbody_;
+    private bool isStationary = true;
 
     public void ResetPosition()
     {
         transform.position = Vector2.zero;
         rigidbody_.velocity = Vector2.zero;
+        isStationary = true;
     }
     
     
@@ -22,7 +22,6 @@ public class Ball : MonoBehaviour
     void Start()
     {
         ResetPosition();
-        InitForce();
     }
 
     public void InitForce()
@@ -32,11 +31,19 @@ public class Ball : MonoBehaviour
 
         Vector2 direction = new(x, y);
         rigidbody_.AddForce(direction * speed);
+
+        isStationary = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isStationary)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                InitForce();
+            }
+        }
     }
 }
